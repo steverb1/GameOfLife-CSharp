@@ -99,39 +99,6 @@ namespace GameOfLife
                 }
             }
 
-            //if (IsAlive(x, y + 1))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x - 1, y + 1))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x - 1, y))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x - 1, y - 1))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x, y - 1))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x + 1, y - 1))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x + 1, y))
-            //{
-            //    count++;
-            //}
-            //if (IsAlive(x + 1, y + 1))
-            //{
-            //    count++;
-            //}
-
             return count;
         }
 
