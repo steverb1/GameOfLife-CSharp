@@ -1,4 +1,6 @@
-﻿namespace GameOfLife
+﻿using System;
+
+namespace GameOfLife
 {
     public class Grid
     {
@@ -8,14 +10,18 @@
         {
             Cells = new Cell[size, size];
 
-            for (int i = 0; i < size; i++)
+            for (int x = 0; x < size; x++)
             {
-                for (int j = 0; j < size; j++)
+                for (int y = 0; y < size; y++)
                 {
-                    Cells[i, j] = new Cell();
+                    Cells[x, y] = new Cell();
                 }
             }
         }
 
+        public void SeedCell(int x, int y)
+        {
+            Cells[x, y].Alive = true;
+        }
     }
 }

@@ -8,9 +8,10 @@ namespace GameOfLife.Tests.Unit
         [Fact]
         public void CreatingGrid_DimensionsAreCorrect()
         {
-            Grid grid = new Grid(10);
+            int size = 10;
+            Grid grid = new Grid(size);
 
-            grid.Cells.Length.Should().Be(100);
+            grid.Cells.Length.Should().Be(size * size);
         }
 
         [Fact]
@@ -26,6 +27,17 @@ namespace GameOfLife.Tests.Unit
                     grid.Cells[i,j].Alive.Should().Be(false);
                 }
             }
+        }
+
+        [Fact]
+        public void InitializeStartingState_SeededCellsAreAlive()
+        {
+            int size = 10;
+            Grid grid = new Grid(size);
+
+            grid.SeedCell(0, 0);
+
+            grid.Cells[0, 0].Alive.Should().Be(true);
         }
     }
 }
