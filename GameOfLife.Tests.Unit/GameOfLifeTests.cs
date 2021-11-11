@@ -41,7 +41,7 @@ namespace GameOfLife.Tests.Unit
         }
 
         [Fact]
-        public void CellWithNoNeighbors_Dies()
+        public void LiveCellWithNoNeighbors_Dies()
         {
             grid.SeedCell(0, 0);
             grid.calculateNextGeneration();
@@ -50,14 +50,37 @@ namespace GameOfLife.Tests.Unit
         }
 
         [Fact]
-        public void CellWithOneNeighbor_Dies()
+        public void LiveCellWithOneNeighbor_Dies()
         {
-            grid.SeedCell(0, 0);
+            grid.SeedCell(2, 1);
+            grid.SeedCell(1, 1);
+            grid.calculateNextGeneration();
+
+            grid.Cells[2, 1].Alive.Should().Be(false);
+        }
+
+        [Fact]
+        public void LiveCellWithFourNeighbors_Dies()
+        {
+            grid.SeedCell(2, 1);
+            grid.SeedCell(2, 2);
+            grid.SeedCell(1, 2);
+            grid.SeedCell(1, 1);
             grid.SeedCell(1, 0);
             grid.calculateNextGeneration();
 
-            grid.Cells[0, 0].Alive.Should().Be(false);
-            grid.Cells[1, 0].Alive.Should().Be(false);
+            grid.Cells[2, 1].Alive.Should().Be(false);
+        }
+
+        [Fact]
+        public void LiveCellWithTwoNeighbors_Lives()
+        {
+            grid.SeedCell(2, 1);
+            grid.SeedCell(2, 2);
+            grid.SeedCell(1, 2);
+            grid.calculateNextGeneration();
+
+            grid.Cells[2, 1].Alive.Should().Be(true);
         }
     }
 }
