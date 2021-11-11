@@ -68,10 +68,7 @@ namespace GameOfLife
                 {
                     Cell currentCell = Cells[x, y];
 
-                    if (currentCell.Alive != currentCell.IsAliveNext)
-                    {
-                        currentCell.Alive = currentCell.IsAliveNext;
-                    }
+                    currentCell.Alive = currentCell.IsAliveNext;
                 }
             }
         }
@@ -80,49 +77,76 @@ namespace GameOfLife
         {
             int count = 0;
 
-            if (IsAlive(x, y + 1))
+            int[,] cellsToCheck = new int[,] {
+                {x - 1, y - 1},
+                {x - 1, y},
+                {x - 1, y + 1},
+                {x, y + 1},
+                {x + 1, y + 1},
+                {x + 1, y},
+                {x + 1, y - 1},
+                {x, y - 1}
+            };
+
+            for (int i = 0; i < cellsToCheck.GetLength(0); i++)
             {
-                count++;
+                int xToCheck = cellsToCheck[i, 0];
+                int yToCheck = cellsToCheck[i, 1];
+
+                if (IsAlive(xToCheck, yToCheck))
+                {
+                    count++;
+                }
             }
-            if (IsAlive(x - 1, y + 1))
-            {
-                count++;
-            }
-            if (IsAlive(x - 1, y))
-            {
-                count++;
-            }
-            if (IsAlive(x - 1, y - 1))
-            {
-                count++;
-            }
-            if (IsAlive(x, y - 1))
-            {
-                count++;
-            }
-            if (IsAlive(x + 1, y - 1))
-            {
-                count++;
-            }
-            if (IsAlive(x + 1, y))
-            {
-                count++;
-            }
-            if (IsAlive(x + 1, y + 1))
-            {
-                count++;
-            }
+
+            //if (IsAlive(x, y + 1))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x - 1, y + 1))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x - 1, y))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x - 1, y - 1))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x, y - 1))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x + 1, y - 1))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x + 1, y))
+            //{
+            //    count++;
+            //}
+            //if (IsAlive(x + 1, y + 1))
+            //{
+            //    count++;
+            //}
 
             return count;
         }
 
         private bool IsAlive(int x, int y)
         {
-            if (x < 0 || x >= size || y < 0 || y >= size)
+            if (OffGrid(x, y))
             {
                 return false;
             }
             return Cells[x, y].Alive;
+        }
+
+        private bool OffGrid(int x, int y)
+        {
+            return x < 0 || x >= size || y < 0 || y >= size;
         }
     }
 }
