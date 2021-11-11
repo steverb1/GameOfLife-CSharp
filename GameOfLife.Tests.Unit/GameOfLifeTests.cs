@@ -8,10 +8,9 @@ namespace GameOfLife.Tests.Unit
         [Fact]
         public void CreatingGrid_DimensionsAreCorrect()
         {
-            Grid grid = new Grid(10, 10);
+            Grid grid = new Grid(10);
 
-            grid.Width.Should().Be(10);
-            grid.Height.Should().Be(9);
+            grid.Cells.Length.Should().Be(100);
         }
     }
 }

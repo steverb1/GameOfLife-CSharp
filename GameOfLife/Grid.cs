@@ -2,13 +2,12 @@
 {
     public class Grid
     {
-        public Grid(int width, int height)
+        public Cell[,] Cells { get; }
+
+        public Grid(int size)
         {
-            Width = width;
-            Height = height;
+            Cells = new Cell[size, size];
         }
 
-        public int Width { get; }
-        public int Height { get; set; }
     }
 }
