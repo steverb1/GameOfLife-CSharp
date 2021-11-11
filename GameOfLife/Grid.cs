@@ -52,6 +52,13 @@ namespace GameOfLife
                     {
                         currentCell.IsAliveNext = false;
                     }
+                    else if (neighborCount == 3)
+                    {
+                        if (currentCell.Alive == false)
+                        {
+                            currentCell.IsAliveNext = true;
+                        }
+                    }
                 }
             }
 

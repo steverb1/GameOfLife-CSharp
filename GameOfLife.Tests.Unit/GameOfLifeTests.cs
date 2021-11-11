@@ -82,5 +82,16 @@ namespace GameOfLife.Tests.Unit
 
             grid.Cells[2, 1].Alive.Should().Be(true);
         }
+
+        [Fact]
+        public void DeadCellWithThreeNeighbors_Lives()
+        {
+            grid.SeedCell(2, 2);
+            grid.SeedCell(1, 2);
+            grid.SeedCell(1, 1);
+            grid.calculateNextGeneration();
+
+            grid.Cells[2, 1].Alive.Should().Be(true);
+        }
     }
 }
