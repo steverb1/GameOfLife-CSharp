@@ -110,6 +110,16 @@ namespace GameOfLife.Tests.Unit
         }
 
         [Fact]
+        public void DeadCellWithTwoNeighbors_RemainsDead()
+        {
+            grid.SeedCell(1, 2);
+            grid.SeedCell(1, 1);
+            grid.calculateNextGeneration();
+
+            grid.Cells[2, 1].Alive.Should().Be(false);
+        }
+
+        [Fact]
         public void DeadCellWithThreeNeighbors_Lives()
         {
             grid.SeedCell(2, 2);

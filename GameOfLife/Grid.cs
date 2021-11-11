@@ -24,7 +24,6 @@ namespace GameOfLife
         public void SeedCell(int x, int y)
         {
             Cells[x, y].Alive = true;
-            Cells[x, y].IsAliveNext = true;
         }
 
         public void calculateNextGeneration()
@@ -36,28 +35,24 @@ namespace GameOfLife
                     Cell currentCell = Cells[x, y];
                     int neighborCount = countNeighbors(x, y);
 
-                    if (neighborCount == 0)
-                    {
-                        currentCell.IsAliveNext = false;
-                    }
-                    else if (neighborCount == 1)
+                    if (neighborCount == 0 || neighborCount == 1)
                     {
                         currentCell.IsAliveNext = false;
                     }
                     else if (neighborCount == 2)
+                    {
+                        if (currentCell.Alive)
+                        {
+                            currentCell.IsAliveNext = true;
+                        }
+                    }
+                    else if (neighborCount == 3)
                     {
                         currentCell.IsAliveNext = true;
                     }
                     else if (neighborCount >= 4)
                     {
                         currentCell.IsAliveNext = false;
-                    }
-                    else if (neighborCount == 3)
-                    {
-                        if (currentCell.Alive == false)
-                        {
-                            currentCell.IsAliveNext = true;
-                        }
                     }
                 }
             }
