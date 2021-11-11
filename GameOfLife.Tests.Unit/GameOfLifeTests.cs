@@ -73,6 +73,20 @@ namespace GameOfLife.Tests.Unit
         }
 
         [Fact]
+        public void LiveCellWithFiveNeighbors_Dies()
+        {
+            grid.SeedCell(2, 1);
+            grid.SeedCell(2, 2);
+            grid.SeedCell(1, 2);
+            grid.SeedCell(1, 1);
+            grid.SeedCell(1, 0);
+            grid.SeedCell(2, 0);
+            grid.calculateNextGeneration();
+
+            grid.Cells[2, 1].Alive.Should().Be(false);
+        }
+
+        [Fact]
         public void LiveCellWithTwoNeighbors_Lives()
         {
             grid.SeedCell(2, 1);

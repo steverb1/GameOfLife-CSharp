@@ -48,7 +48,7 @@ namespace GameOfLife
                     {
                         currentCell.IsAliveNext = true;
                     }
-                    else if (neighborCount == 4)
+                    else if (neighborCount >= 4)
                     {
                         currentCell.IsAliveNext = false;
                     }
